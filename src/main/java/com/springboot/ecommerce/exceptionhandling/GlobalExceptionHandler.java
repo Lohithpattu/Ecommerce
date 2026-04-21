@@ -1,0 +1,22 @@
+package com.springboot.ecommerce.exceptionhandling;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+	
+	@ExceptionHandler(PasswordMismatchException.class)
+	public ResponseEntity<String> handlePasswordMismatchException(PasswordMismatchException ex)
+	{
+		return new ResponseEntity<String>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(DuplicateDataException.class)
+	public ResponseEntity<String> handleDuplicateDataException(DuplicateDataException ex)
+	{
+		return new ResponseEntity<String>(ex.getMessage(),HttpStatus.ALREADY_REPORTED);
+	}
+}
