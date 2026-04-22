@@ -14,9 +14,15 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<String>(ex.getMessage(),HttpStatus.BAD_REQUEST);
 	}
 	
-	@ExceptionHandler(DuplicateDataException.class)
-	public ResponseEntity<String> handleDuplicateDataException(DuplicateDataException ex)
+	@ExceptionHandler(DuplicateAccountException.class)
+	public ResponseEntity<String> handleDuplicateDataException(DuplicateAccountException ex)
 	{
 		return new ResponseEntity<String>(ex.getMessage(),HttpStatus.ALREADY_REPORTED);
+	}
+	
+	@ExceptionHandler(AccountNotFoundException.class)
+	public ResponseEntity<String> handleAccountNotFoundException(AccountNotFoundException ex)
+	{
+		return new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
 	}
 }
