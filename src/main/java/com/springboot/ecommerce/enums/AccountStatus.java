@@ -2,22 +2,22 @@ package com.springboot.ecommerce.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-public enum Category {
+public enum AccountStatus {
 	
-	FOOD,
-	GROCERY,
-	ELECTRONICS,
-	CLOTHING;
+	ACTIVE,
+	BLOCKED,
+	DELETED,
+	PENDING_VERIFICATION;
 	
 	@JsonCreator
-	public static Category from(String value)
+	public static AccountStatus from(String value)
 	{
 		try {
-			
-			return Category.valueOf(value.toUpperCase());
+			return AccountStatus.valueOf(value.toUpperCase());
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Invalid category: " + value);
 		}
 	}
-}
+	
 
+}

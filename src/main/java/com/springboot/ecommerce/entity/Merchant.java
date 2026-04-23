@@ -2,7 +2,6 @@ package com.springboot.ecommerce.entity;
 
 import com.springboot.ecommerce.enums.Category;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -28,7 +27,7 @@ public class Merchant {
     @Column(name = "merchant_id")
     private Long merchantId;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 50)
     private String name;
 
     @Column(name = "business_name",nullable = false, length = 200)
@@ -38,16 +37,16 @@ public class Merchant {
     @Column(nullable = false)
     private Category category;
     
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 255)
     private String address;
     
-    @Column(name = "gst_no",nullable = false, length = 50)
-    private int gstNo;
+    @Column(name = "gst_no",nullable = false, unique = true, length = 15)
+    private String gstNo;
     
     @Column(name = "store_description", length = 255)
     private String storeDescription;
     
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account_id",nullable = false, unique = true)
     private Account account;
     

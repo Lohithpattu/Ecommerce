@@ -3,7 +3,7 @@ package com.springboot.ecommerce.entity;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.springboot.ecommerce.enums.AccountStatus;
 import com.springboot.ecommerce.enums.Role;
 
 import jakarta.persistence.Column;
@@ -13,16 +13,13 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "accounts")
 public class Account {
 	
@@ -30,15 +27,7 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@JsonIgnore
-	@OneToOne(mappedBy = "account")
-	private User user;
-	
-	@JsonIgnore
-	@OneToOne(mappedBy = "account")
-	private Admin admin;
-	
-	@Column(name = "mobile_no", nullable = false, length = 10)
+	@Column(name = "mobile_no", nullable = false, length = 15)
     private String mobileNo;
     
     @Column(nullable = false, unique = true, length = 50)
@@ -51,8 +40,9 @@ public class Account {
     @Column(nullable = false)
     private Role role; // USER, ADMIN, MERCHANT
     
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private boolean active = true;
+    private AccountStatus accountStatus; // ACTIVE, BLOCKED, DELETED, PENDING_VERIFICATION
     
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;

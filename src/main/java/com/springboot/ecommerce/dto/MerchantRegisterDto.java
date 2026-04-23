@@ -1,7 +1,6 @@
 package com.springboot.ecommerce.dto;
 
 import com.springboot.ecommerce.enums.Category;
-import com.springboot.ecommerce.enums.Role;
 import com.springboot.ecommerce.util.ValidationConstants;
 
 import jakarta.validation.constraints.AssertTrue;
@@ -15,11 +14,8 @@ import lombok.Data;
 @Data
 public class MerchantRegisterDto {
 	
-	@NotNull(message = ValidationConstants.ROLE_REQUIRED)
-	private Role role;
-	
     @NotBlank(message = ValidationConstants.MERCHANT_NAME_REQUIRED)
-    @Size(min = 3, max = 20, message = ValidationConstants.NAME_SIZE)
+    @Size(min = 3, max = 50, message = ValidationConstants.NAME_SIZE)
     @Pattern(regexp = ValidationConstants.PERSON_NAME_REGEX, message = ValidationConstants.INVALID_NAME)
     private String merchantName;
 
@@ -28,12 +24,24 @@ public class MerchantRegisterDto {
     private String mobileNo;
 
     @NotBlank(message = ValidationConstants.BUSINESS_NAME_REQUIRED)
-    @Size(min = 2, max = 100, message = ValidationConstants.NAME_SIZE)
+    @Size(min = 2, max = 200, message = ValidationConstants.NAME_SIZE)
     @Pattern(regexp = ValidationConstants.BUSINESS_NAME_REGEX, message = ValidationConstants.INVALID_NAME)
     private String businessName;
 
     @NotNull(message = "Category is required")
     private Category category;
+    
+    @NotBlank(message = ValidationConstants.ADDRESS_REQUIRED)
+    @Size(min = 3, max = 255, message = ValidationConstants.ADDRESS_SIZE)
+    private String address;
+    
+    @NotBlank(message = ValidationConstants.GST_REQUIRED)
+    @Size(min = 15, max = 15, message = ValidationConstants.GST_SIZE)
+    @Pattern(regexp = ValidationConstants.GST_REGEX, message = ValidationConstants.INVALID_GST)
+    private String gstNo;
+    
+    @Size(max = 255, message = ValidationConstants.DESCRIPTION_SIZE)
+    private String storeDescription;
 
     @NotBlank(message = ValidationConstants.EMAIL_REQUIRED)
     @Email(message = ValidationConstants.INVALID_EMAIL)
@@ -46,7 +54,6 @@ public class MerchantRegisterDto {
     private String password;
 
     @NotBlank(message = ValidationConstants.CONFIRM_PASSWORD_REQUIRED)
-    @Size(min = 8, max = 20, message = ValidationConstants.PASSWORD_SIZE)
     private String confirmPassword;
 
     @AssertTrue(message = ValidationConstants.PASSWORD_MISMATCH)

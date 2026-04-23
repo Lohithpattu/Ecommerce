@@ -1,12 +1,10 @@
 package com.springboot.ecommerce.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "users")
 public class User {
 
@@ -15,10 +13,10 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
     
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 50)
     private String name;
     
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account_id",nullable = false, unique = true)
     private Account account;
     
