@@ -4,11 +4,7 @@ public final class ValidationConstants {
 	
 	private ValidationConstants() {} // prevent object creation
 
-	public static final String USER_NAME_REQUIRED = "User name is required";
-	
-	public static final String ADMIN_NAME_REQUIRED = "Admin name is required";
-	
-	public static final String MERCHANT_NAME_REQUIRED = "Merchant name is required";
+	public static final String NAME_REQUIRED = "Name is required";
 	
 	public static final String BUSINESS_NAME_REQUIRED = "Business name is required";
 	
@@ -17,6 +13,8 @@ public final class ValidationConstants {
 	public static final String MOBILE_REQUIRED = "Mobile number is required";
 	
 	public static final String EMAIL_REQUIRED = "Email is required";
+	
+	public static final String CATEGORY_REQUIRED = "Category is required";
 	
 	public static final String ADDRESS_REQUIRED = "Address is required";
 	
@@ -41,6 +39,8 @@ public final class ValidationConstants {
 	public static final String DESCRIPTION_SIZE = "Description can contain maximum of 255 characters";
 	
 	public static final String INVALID_NAME = "Invalid Name format";
+	
+	public static final String INVALID_BUSINESS_NAME = "Invalid Business Name format";
 	
 	public static final String INVALID_MOBILE = "Invalid Mobile number";
 	
