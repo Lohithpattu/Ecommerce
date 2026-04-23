@@ -1,6 +1,5 @@
 package com.springboot.ecommerce.dto;
 
-import com.springboot.ecommerce.enums.Role;
 import com.springboot.ecommerce.util.ValidationConstants;
 
 import jakarta.validation.constraints.*;
@@ -8,9 +7,6 @@ import lombok.Data;
 
 @Data
 public class UserRegisterDto {
-	
-	@NotNull(message = ValidationConstants.ROLE_REQUIRED)
-	private Role role;
 
     @NotBlank(message = ValidationConstants.USER_NAME_REQUIRED)
     @Size(min = 3, max = 20, message =ValidationConstants.NAME_SIZE )

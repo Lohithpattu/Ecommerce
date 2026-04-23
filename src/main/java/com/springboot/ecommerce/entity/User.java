@@ -10,11 +10,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long userId;
-    
-    @Column(nullable = false, length = 50)
-    private String name;
+    private Long id;
     
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account_id",nullable = false, unique = true)

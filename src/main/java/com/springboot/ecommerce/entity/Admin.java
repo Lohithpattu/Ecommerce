@@ -10,14 +10,9 @@ public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "admin_id")
-    private Long adminId;
-    
-    @Column(nullable = false, length = 50)
-    private String name;
-    
+    private Long id;
+   
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account_id",nullable = false, unique = true)
     private Account account;
-  
 }

@@ -24,11 +24,7 @@ public class Merchant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "merchant_id")
-    private Long merchantId;
-
-    @Column(nullable = false, length = 50)
-    private String name;
+    private Long id;
 
     @Column(name = "business_name",nullable = false, length = 200)
     private String businessName;
@@ -49,5 +45,4 @@ public class Merchant {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account_id",nullable = false, unique = true)
     private Account account;
-    
 }
