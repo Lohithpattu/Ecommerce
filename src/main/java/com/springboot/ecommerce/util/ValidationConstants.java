@@ -40,6 +40,8 @@ public final class ValidationConstants {
 	
 	public static final String PERSON_NAME_REGEX = "^[A-Za-z]+([ '-][A-Za-z]+)*$";
 	
+	public static final String BUSINESS_NAME_REGEX = "^[A-Za-z0-9&.,'\\- ]{2,100}$"; 
+	
 	public static final String MOBILE_REGEX = "^[6-9]\\d{9}$";
 	
 	public static final String PASSWORD_REGEX = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[^A-Za-z\\d]).{8,}$";

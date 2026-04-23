@@ -34,6 +34,10 @@ public class Account {
 	@OneToOne(mappedBy = "account")
 	private User user;
 	
+	@JsonIgnore
+	@OneToOne(mappedBy = "account")
+	private Admin admin;
+	
 	@Column(name = "mobile_no", nullable = false, length = 10)
     private String mobileNo;
     

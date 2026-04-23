@@ -16,23 +16,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springboot.ecommerce.dto.AdminRegisterDto;
+import com.springboot.ecommerce.dto.AdminUpdateDto;
 import com.springboot.ecommerce.dto.LoginDto;
-import com.springboot.ecommerce.dto.UserRegisterDto;
-import com.springboot.ecommerce.dto.UserUpdateDto;
-import com.springboot.ecommerce.service.UserService;
+import com.springboot.ecommerce.service.AdminService;
 import com.springboot.ecommerce.util.ApiResponse;
 
 @RestController
-@RequestMapping("/ecom/users")
-public class UserController {
+@RequestMapping("/ecom/admins")
+public class AdminController {
 	
 	@Autowired
-	UserService userService;
+	AdminService adminService;
 	
 	@PostMapping("/register")
-	public ResponseEntity<ApiResponse> registerUser(@Validated @RequestBody UserRegisterDto dto)
+	public ResponseEntity<ApiResponse> registerAdmin(@Validated @RequestBody AdminRegisterDto dto)
 	{
-		 ApiResponse response = userService.registerUser(dto);
+		 ApiResponse response = adminService.registerAdmin(dto);
 		 
 		 return new ResponseEntity<ApiResponse>(response,HttpStatus.CREATED);
 	}
@@ -40,39 +40,39 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseEntity<ApiResponse> login(@RequestBody LoginDto dto)
 	{
-		ApiResponse response = userService.loginUser(dto);
+		ApiResponse response = adminService.loginUser(dto);
 		
 	    return new ResponseEntity<ApiResponse>(response,HttpStatus.OK);
 	}
 	
 	@PutMapping("update/{email}")
-	public ResponseEntity<ApiResponse> updateUser(@PathVariable String email, @Validated @RequestBody UserUpdateDto dto)
+	public ResponseEntity<ApiResponse> updateAdmin(@PathVariable String email, @Validated @RequestBody AdminUpdateDto dto)
 	{
-		ApiResponse response = userService.updateUser(email, dto);
+		ApiResponse response = adminService.updateAdmin(email, dto);
 		
 		return new ResponseEntity<ApiResponse>(response,HttpStatus.OK);
 	}
 	
 	@PatchMapping("update/{email}")
-	public ResponseEntity<ApiResponse> patchUser(@PathVariable String email, @RequestBody Map<String, Object> updates)
+	public ResponseEntity<ApiResponse> patchAdmin(@PathVariable String email, @RequestBody Map<String, Object> updates)
 	{
-		ApiResponse response = userService.patchUser(email, updates);
+		ApiResponse response = adminService.patchAdmin(email, updates);
 		
 		return new ResponseEntity<ApiResponse>(response,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/delete/{email}")
-	public ResponseEntity<ApiResponse> deleteUser(@PathVariable String email)
+	public ResponseEntity<ApiResponse> deleteAdmin(@PathVariable String email)
 	{
-		ApiResponse response = userService.deleteUser(email);
+		ApiResponse response = adminService.deleteAdmin(email);
 		
 		return new ResponseEntity<ApiResponse>(response,HttpStatus.OK);
 	}
 	
 	@GetMapping("/fetchall")
-	public ResponseEntity<ApiResponse> fetchAllUsers()
+	public ResponseEntity<ApiResponse> fetchAllAdmins()
 	{
-		ApiResponse response = userService.fetchAllUsers();
+		ApiResponse response = adminService.fetchAllAdmins();
 		
 		return new ResponseEntity<ApiResponse>(response,HttpStatus.FOUND);
 	}
