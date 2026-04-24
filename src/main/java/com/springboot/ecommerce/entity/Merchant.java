@@ -2,6 +2,7 @@ package com.springboot.ecommerce.entity;
 
 import com.springboot.ecommerce.enums.Category;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -42,7 +43,7 @@ public class Merchant {
     @Column(name = "store_description", length = 255)
     private String storeDescription;
     
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account_id",nullable = false, unique = true)
     private Account account;
 }

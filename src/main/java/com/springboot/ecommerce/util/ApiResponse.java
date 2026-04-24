@@ -1,18 +1,23 @@
 package com.springboot.ecommerce.util;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class ApiResponse {
+public class ApiResponse<T> {
 
-	private String message;
-	private int status;
-	private Object data;
+    private final String message;
+    private final T data;
 
+    private ApiResponse(String message, T data) {
+        this.message = message;
+        this.data = data;
+    }
+
+    public static <T> ApiResponse<T> success(String message, T data) {
+        return new ApiResponse<>(message, data);
+    }
+
+    public static ApiResponse<Void> success(String message) {
+        return new ApiResponse<>(message, null);
+    }
 }
